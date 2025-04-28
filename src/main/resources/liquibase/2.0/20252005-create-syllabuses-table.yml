@@ -1,0 +1,47 @@
+databaseChangeLog:
+  - changeSet:
+      id: 20252005
+      author: Farid Mustafayev
+      changes:
+        - createTable:
+            tableName: syllabuses
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: image_path
+                  type: TEXT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: pdf_path
+                  type: TEXT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: VARCHAR(16)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: TIMESTAMP
+                  defaultValue: now()
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_at
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: true
+
+        - addForeignKeyConstraint:
+            baseTableName: syllabuses
+            baseColumnNames: id
+            referencedTableName: specializations
+            referencedColumnNames: id
+            constraintName: fk_syllabuses_specializations

@@ -1,0 +1,39 @@
+databaseChangeLog:
+  - changeSet:
+      id: 20251004
+      author: Farid Mustafayev
+      changes:
+        - createTable:
+            tableName: specialization_graduates
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: specialization_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: graduate_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+
+        - addForeignKeyConstraint:
+            baseTableName: specialization_graduates
+            baseColumnNames: specialization_id
+            referencedTableName: specializations
+            referencedColumnNames: id
+            constraintName: fk_specialization_graduates_specializations
+
+        - addForeignKeyConstraint:
+            baseTableName: specialization_graduates
+            baseColumnNames: graduate_id
+            referencedTableName: graduates
+            referencedColumnNames: id
+            constraintName: fk_graduates_specializations
