@@ -1,0 +1,50 @@
+server:
+  port: 8182
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5433/postgres
+    username: hamburgIt
+    password: password
+  jpa:
+    show-sql: true
+    open-in-view: false
+  liquibase:
+    change-log: classpath:liquibase/changelog-master.yml
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 1000MB
+      max-request-size: 1000MB
+
+minio:
+  url: http://127.0.0.1:9100
+  access:
+    key: "hamburgItAcademy"
+  secret:
+    key: "hamburgAcademy2025"
+  buckets:
+      instructors:
+        name: "instructors"
+      course-images:
+        name: "course-images"
+      graduates:
+        name: "graduates"
+      reviews:
+        name: "reviews"
+      syllabuses:
+        name: "syllabuses"
+      diplomas:
+        name: "diplomas"
+
+jwt:
+  access-token:
+    expiration:
+      time: 15      # 15 minutes
+  refresh-token:
+    expiration:
+      time: 10080   # 7 days
+
+redis:
+  server:
+    url: redis://localhost:6379

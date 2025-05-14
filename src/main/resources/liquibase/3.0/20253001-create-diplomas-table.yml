@@ -1,0 +1,54 @@
+databaseChangeLog:
+  - changeSet:
+      id: 20253001
+      author: Farid Mustafayev
+      changes:
+        - createTable:
+            tableName: diplomas
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: diploma_path
+                  type: TEXT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: diploma_number
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: status
+                  type: VARCHAR(16)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: TIMESTAMP
+                  defaultValue: now()
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_at
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: true
+              - column:
+                  name: graduate_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+
+        - addForeignKeyConstraint:
+            baseTableName: diplomas
+            baseColumnNames: graduate_id
+            referencedTableName: graduates
+            referencedColumnNames: id
+            constraintName: fk_diplomas_graduates
